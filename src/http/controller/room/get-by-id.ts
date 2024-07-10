@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { makeGetRoomByIdUseCase } from "@/use-cases/factories/room/make-find-by-id";
+import { makeGetRoomByIdUseCase } from "../../../use-cases/factories/room/make-find-by-id";
 import { z } from "zod";
 
 export const getRoomByIdController = async (

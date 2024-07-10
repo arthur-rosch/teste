@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { EmailTokenRepository } from "@/repository/prisma/prisma-emailToken-repository";
-import { ValidEmailToken } from "@/use-cases/cases/email/valid-email-token";
+import { UserRepository } from "../../../repository/prisma";
+import { EmailTokenRepository } from "../../../repository/prisma/prisma-emailToken-repository";
+import { ValidEmailToken } from "../../../use-cases/cases/email/valid-email-token";
 import { PrismaClient } from "@prisma/client";
 
 export function makeValidEmailToken() {

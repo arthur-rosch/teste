@@ -1,4 +1,4 @@
-import { makeGetMessagesByUserId } from '@/use-cases/factories/message/get-messages-by-userId'
+import { makeGetMessagesByUserId } from '../../../use-cases/factories/message/get-messages-by-userId'
 import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 

@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
-import { IEmailToken, IUserRepository } from "@/repository";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
+import { IEmailToken, IUserRepository } from "../../../repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
 import { EventEmitter } from "nodemailer/lib/xoauth2";
 
 export class DeleteUser {

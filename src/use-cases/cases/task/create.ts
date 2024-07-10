@@ -4,9 +4,9 @@ import {
   IProjectRepository,
   ITaskRepository,
   INotificationRepository,
-} from '@/repository'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
-import { SendNotification } from '@/service/sendNotification';
+} from '../../../repository'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
+import { SendNotification } from '../../../service/sendNotification';
 
 export class CreateTaskUseCase {
   constructor(

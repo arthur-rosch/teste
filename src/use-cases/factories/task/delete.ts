@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { TaskRepository } from "@/repository/prisma/prisma-task-repository";
-import { DeleteTaskUseCase } from "@/use-cases/cases/task/delete";
+import { UserRepository } from "../../../repository/prisma";
+import { TaskRepository } from "../../../repository/prisma/prisma-task-repository";
+import { DeleteTaskUseCase } from "../../../use-cases/cases/task/delete";
 import { PrismaClient } from "@prisma/client";
 
 export function makeDeleteTask() {

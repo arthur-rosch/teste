@@ -1,5 +1,5 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IMessageRepository } from "@/repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IMessageRepository } from "../../../repository";
 import { Message } from "@prisma/client";
 
 export class GetMessagesByUserId {

@@ -1,4 +1,4 @@
-import { makeValidEmailToken } from "@/use-cases/factories/email/valid-email-token";
+import { makeValidEmailToken } from "../../../use-cases/factories/email/valid-email-token";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

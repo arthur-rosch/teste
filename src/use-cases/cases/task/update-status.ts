@@ -1,5 +1,5 @@
-import { ErrorHandler } from '@/http/middleware/errorResponse'
-import { ITaskRepository, IUserRepository } from '@/repository'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
+import { ITaskRepository, IUserRepository } from '../../../repository'
 import { Status, Task } from '@prisma/client'
 
 export class UpdateTaskStatusUseCase {

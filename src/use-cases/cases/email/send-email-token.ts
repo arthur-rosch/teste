@@ -1,7 +1,6 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IUserRepository } from "@/repository";
-import { IEmailToken } from "@/repository/email";
-import { SendEmailToken } from "@/service/sendEmail";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IUserRepository, IEmailToken } from "../../../repository";
+import { SendEmailToken } from "../../../service/sendEmail";
 import { EmailToken } from "@prisma/client";
 import Chance from "chance";
 

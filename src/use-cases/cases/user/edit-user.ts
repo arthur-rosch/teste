@@ -1,4 +1,4 @@
-import { IUserRepository } from "@/repository";
+import { IUserRepository } from "../../../repository";
 import { ErrorHandler } from "../../../http/middleware/errorResponse";
 
 interface editUserRequest {

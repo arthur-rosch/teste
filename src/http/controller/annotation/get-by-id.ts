@@ -1,4 +1,4 @@
-import { makeGetByIdAnnotation } from "@/use-cases/factories/annotation/get-by-id";
+import { makeGetByIdAnnotation } from "../../../use-cases/factories/annotation/get-by-id";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

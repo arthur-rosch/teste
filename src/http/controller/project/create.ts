@@ -1,4 +1,4 @@
-import { makeCreateProject } from "@/use-cases/factories/project/create";
+import { makeCreateProject } from "../../../use-cases/factories/project/create";
 import { Prisma, Privacy } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";

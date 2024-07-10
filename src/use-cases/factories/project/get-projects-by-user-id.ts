@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { ProjectRepository } from "@/repository/prisma/prisma-project-repository";
-import { GetProjectsByUserIdUseCase } from "@/use-cases/cases/project/get-projects-by-user-id";
+import { UserRepository } from "../../../repository/prisma";
+import { ProjectRepository } from "../../../repository/prisma/prisma-project-repository";
+import { GetProjectsByUserIdUseCase } from "../../../use-cases/cases/project/get-projects-by-user-id";
 import { PrismaClient } from "@prisma/client";
 
 export function makeGetProjectsByUserIdUseCase() {

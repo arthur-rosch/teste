@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IRoomRepository, IUserRepository } from "@/repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IRoomRepository, IUserRepository } from "../../../repository";
 
 export class UpdateRoomUseCase {
   constructor(

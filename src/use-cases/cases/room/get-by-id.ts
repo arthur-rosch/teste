@@ -1,6 +1,6 @@
 import { Room } from "@prisma/client";
-import { IRoomRepository } from "@/repository";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
+import { IRoomRepository } from "../../../repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
 
 export class GetRoomByIdUseCase {
   constructor(private roomRepository: IRoomRepository) {}

@@ -1,6 +1,6 @@
 import { Projects, Privacy } from '@prisma/client'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
-import { IProjectRepository, IUserRepository } from '@/repository'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
+import { IProjectRepository, IUserRepository } from '../../../repository'
 
 export class UpdateStatusPrivacyProjectUseCase {
   constructor(

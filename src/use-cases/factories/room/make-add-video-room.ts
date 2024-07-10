@@ -1,5 +1,5 @@
-import { RoomRepository, UserRepository } from "@/repository/prisma";
-import { AddVideoRoomUseCase } from "@/use-cases/cases/room/add-video-room";
+import { RoomRepository, UserRepository } from "../../../repository/prisma";
+import { AddVideoRoomUseCase } from "../../../use-cases/cases/room/add-video-room";
 import { PrismaClient } from "@prisma/client";
 
 export function makeAddVideoRoom() {

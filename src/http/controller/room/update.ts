@@ -1,7 +1,6 @@
 import * as z from "zod";
 import { NextFunction, Request, Response } from "express";
-import { AuthReq } from "@/@types/authRequest";
-import { makeUpdateRoomUseCase } from "@/use-cases/factories/room/make-update-room";
+import { makeUpdateRoomUseCase } from "../../../use-cases/factories/room/make-update-room";
 
 export const updateRoomController = async (
   req: Request,

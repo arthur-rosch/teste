@@ -1,9 +1,9 @@
-import { UserRepository } from "@/repository/prisma";
-import { NotificationRepository } from "@/repository/prisma/prisma-notification-repository";
-import { ProjectRepository } from "@/repository/prisma/prisma-project-repository";
-import { TaskRepository } from "@/repository/prisma/prisma-task-repository";
-import { SendNotification } from "@/service/sendNotification";
-import { CreateTaskUseCase } from "@/use-cases/cases/task/create";
+import { UserRepository } from "../../../repository/prisma";
+import { NotificationRepository } from "../../../repository/prisma/prisma-notification-repository";
+import { ProjectRepository } from "../../../repository/prisma/prisma-project-repository";
+import { TaskRepository } from "../../../repository/prisma/prisma-task-repository";
+import { SendNotification } from "../../../service/sendNotification";
+import { CreateTaskUseCase } from "../../../use-cases/cases/task/create";
 import { PrismaClient } from "@prisma/client";
 
 export function makeCreateTask() {

@@ -1,4 +1,4 @@
-import { makeRemoveUserInProjectUseCase } from "@/use-cases/factories/project/remove-user-in-project";
+import { makeRemoveUserInProjectUseCase } from "../../../use-cases/factories/project/remove-user-in-project";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

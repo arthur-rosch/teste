@@ -1,6 +1,6 @@
 import * as z from "zod";
 import { NextFunction, Request, Response } from "express";
-import { makeAddUserToRoomUseCase } from "@/use-cases/factories/room/make-add-user-to-room";
+import { makeAddUserToRoomUseCase } from "../../../use-cases/factories/room/make-add-user-to-room";
 
 export const addUserToRoomController = async (
   req: Request,

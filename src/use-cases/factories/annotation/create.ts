@@ -1,8 +1,8 @@
-import { UserRepository } from "@/repository/prisma";
-import { AnnotationRepository } from "@/repository/prisma/prisma-annotation-repository";
-import { NotificationRepository } from "@/repository/prisma/prisma-notification-repository";
-import { SendNotification } from "@/service/sendNotification";
-import { CreateAnnotationUseCase } from "@/use-cases/cases/annotation/create";
+import { UserRepository } from "../../../repository/prisma";
+import { AnnotationRepository } from "../../../repository/prisma/prisma-annotation-repository";
+import { NotificationRepository } from "../../../repository/prisma/prisma-notification-repository";
+import { SendNotification } from "../../../service/sendNotification";
+import { CreateAnnotationUseCase } from "../../../use-cases/cases/annotation/create";
 import { PrismaClient } from "@prisma/client";
 
 export function makeCreateAnnotation() {

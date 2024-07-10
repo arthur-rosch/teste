@@ -1,7 +1,7 @@
 import { Annotation } from '@prisma/client'
-import { IAnnotationRepository, INotificationRepository, IUserRepository } from '@/repository'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
-import { SendNotification } from '@/service/sendNotification'
+import { IAnnotationRepository, INotificationRepository, IUserRepository } from '../../../repository'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
+import { SendNotification } from '../../../service/sendNotification'
 
 interface DeleteAnnotationUseCaseReq {
   userId: string

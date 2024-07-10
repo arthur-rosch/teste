@@ -1,7 +1,7 @@
 import { Privacy, Projects } from "@prisma/client";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { INotificationRepository, IProjectRepository, IUserRepository } from "@/repository";
-import { SendNotification } from "@/service/sendNotification";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { INotificationRepository, IProjectRepository, IUserRepository } from "../../../repository";
+import { SendNotification } from "../../../service/sendNotification";
 
 interface CreateProjectUseCaseReq {
   name: string;

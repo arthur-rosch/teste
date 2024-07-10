@@ -1,5 +1,5 @@
-import { io } from '@/index'
-import { IMessageRepository } from '@/repository'
+import { io } from '../../../index'
+import { IMessageRepository } from '../../../repository'
 
 interface SendMessageReq {
   content: string

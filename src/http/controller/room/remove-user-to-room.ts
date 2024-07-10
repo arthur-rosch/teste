@@ -1,7 +1,6 @@
 import * as z from "zod";
 import { NextFunction, Request, Response } from "express";
-import { AuthReq } from "@/@types/authRequest";
-import { makeRemoveUserToRoomUseCase } from "@/use-cases/factories/room/make-remove-user-to-room";
+import { makeRemoveUserToRoomUseCase } from "../../../use-cases/factories/room/make-remove-user-to-room";
 
 export const removeUserToRoomController = async (
   req: Request,

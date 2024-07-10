@@ -1,5 +1,5 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IRoomRepository, IUserRepository } from "@/repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IRoomRepository, IUserRepository } from "../../../repository";
 
 interface AddVideoRoomRequest {
   ownerId: string;

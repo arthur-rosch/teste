@@ -1,6 +1,6 @@
 import { ExtraExpense } from '@prisma/client'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
-import { IUserRepository, IFinancialRepository } from '@/repository'
+import { ErrorHandler } from '../../../../http/middleware/errorResponse'
+import { IUserRepository, IFinancialRepository } from '../../../../repository'
 
 interface DeleteExtraExpenseReq {
   userId: string

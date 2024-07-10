@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { UserRepository } from '../../../repository/prisma/prisma-user-repository'
 import { DeleteUser } from '../../cases/user/delete-user'
-import { EmailTokenRepository } from '@/repository/prisma';
+import { EmailTokenRepository } from '../../../repository/prisma';
 
 export function makeDeleteUser() {
   const prisma = new PrismaClient()

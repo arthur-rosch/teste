@@ -1,4 +1,4 @@
-import { IMessageRepository } from '@/repository'
+import { IMessageRepository } from '../../../repository'
 
 export class GetAllMessages {
   constructor(private messageRepository: IMessageRepository) {}

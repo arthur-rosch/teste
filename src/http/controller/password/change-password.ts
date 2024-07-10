@@ -1,4 +1,4 @@
-import { makeChangePassword } from "@/use-cases/factories/password/change-password";
+import { makeChangePassword } from "../../../use-cases/factories/password/change-password";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

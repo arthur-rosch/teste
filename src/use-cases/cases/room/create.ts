@@ -1,8 +1,8 @@
 import { Prisma, Room } from "@prisma/client";
-import { IChatRepository } from "@/repository/chat";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IUserRepository, IRoomRepository, INotificationRepository } from "@/repository";
-import { SendNotification } from "@/service/sendNotification";
+import { IChatRepository } from "../../../repository/chat";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IUserRepository, IRoomRepository, INotificationRepository } from "../../../repository";
+import { SendNotification } from "../../../service/sendNotification";
 
 export class CreateRoomUseCase {
   constructor(

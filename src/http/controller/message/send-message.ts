@@ -1,4 +1,4 @@
-import { makeSendMessage } from '@/use-cases/factories/message/send-message'
+import { makeSendMessage } from '../../../use-cases/factories/message/send-message'
 import { NextFunction, Request, Response } from 'express'
 import { z } from 'zod'
 

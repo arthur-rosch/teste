@@ -1,6 +1,6 @@
 import { Annotation } from '@prisma/client'
-import { IAnnotationRepository, IUserRepository } from '@/repository'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
+import { IAnnotationRepository, IUserRepository } from '../../../repository'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
 
 interface GetByUserIdUseCaseReq {
   userId: string

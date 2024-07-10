@@ -1,7 +1,7 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { INotificationRepository, IRoomRepository, IUserRepository } from "@/repository";
-import { IChatRepository } from "@/repository/chat";
-import { SendNotification } from "@/service/sendNotification";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { INotificationRepository, IRoomRepository, IUserRepository } from "../../../repository";
+import { IChatRepository } from "../../../repository/chat";
+import { SendNotification } from "../../../service/sendNotification";
 import { Chat } from "@prisma/client";
 
 export class DeleteRoomUseCase {

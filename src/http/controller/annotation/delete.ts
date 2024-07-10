@@ -1,4 +1,4 @@
-import { makeDeleteAnnotation } from "@/use-cases/factories/annotation/delete";
+import { makeDeleteAnnotation } from "../../../use-cases/factories/annotation/delete";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { makeDeleteUser } from '@/use-cases/factories/user/delete-user'
+import { makeDeleteUser } from '../../../use-cases/factories/user/delete-user'
 import { z } from 'zod'
 
 export async function deleteUser(

@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { ProjectRepository } from "@/repository/prisma/prisma-project-repository";
-import { UpdateStatusPrivacyProjectUseCase } from "@/use-cases/cases/project/update-status-privacy";
+import { UserRepository } from "../../../repository/prisma";
+import { ProjectRepository } from "../../../repository/prisma/prisma-project-repository";
+import { UpdateStatusPrivacyProjectUseCase } from "../../../use-cases/cases/project/update-status-privacy";
 import { PrismaClient } from "@prisma/client";
 
 export function makeUpdateStatusPrivacyProjectUseCase() {

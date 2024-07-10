@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import { CreateRoomUseCase } from "@/use-cases/cases/room/create";
-import { UserRepository, RoomRepository } from "@/repository/prisma";
-import { ChatRepository } from "@/repository/prisma/prisma-chat-repository";
-import { NotificationRepository } from "@/repository/prisma/prisma-notification-repository";
-import { SendNotification } from "@/service/sendNotification";
+import { CreateRoomUseCase } from "../../../use-cases/cases/room/create";
+import { UserRepository, RoomRepository } from "../../../repository/prisma";
+import { ChatRepository } from "../../../repository/prisma/prisma-chat-repository";
+import { NotificationRepository } from "../../../repository/prisma/prisma-notification-repository";
+import { SendNotification } from "../../../service/sendNotification";
 
 export function makeCreateRoomUseCase() {
   const prisma = new PrismaClient();

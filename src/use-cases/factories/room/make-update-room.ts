@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { UpdateRoomUseCase } from "@/use-cases/cases/room/update";
-import { RoomRepository, UserRepository } from "@/repository/prisma";
+import { UpdateRoomUseCase } from "../../../use-cases/cases/room/update";
+import { RoomRepository, UserRepository } from "../../../repository/prisma";
 
 export function makeUpdateRoomUseCase() {
   const prisma = new PrismaClient();

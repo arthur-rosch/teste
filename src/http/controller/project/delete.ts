@@ -1,4 +1,4 @@
-import { makeDeleteProject } from "@/use-cases/factories/project/delete";
+import { makeDeleteProject } from "../../../use-cases/factories/project/delete";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { makeGetMessagesByChatId } from '@/use-cases/factories/message/get-messages-by-chatId'
+import { makeGetMessagesByChatId } from '../../../use-cases/factories/message/get-messages-by-chatId'
 import { NextFunction, Request, Response } from 'express'
 
 export async function getMessagesByChatId(

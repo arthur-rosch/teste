@@ -1,6 +1,6 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IUserRepository, IRoomRepository, INotificationRepository } from "@/repository";
-import { SendNotification } from "@/service/sendNotification";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IUserRepository, IRoomRepository, INotificationRepository } from "../../../repository";
+import { SendNotification } from "../../../service/sendNotification";
 
 export class AddUserToRoomUseCase {
   constructor(

@@ -1,5 +1,5 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { INotificationRepository, IUserRepository } from "@/repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { INotificationRepository, IUserRepository } from "../../../repository";
 import { Notification } from "@prisma/client";
 
 interface CreateNotificationRequest {

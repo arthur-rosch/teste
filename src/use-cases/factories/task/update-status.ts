@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { TaskRepository } from "@/repository/prisma/prisma-task-repository";
-import { UpdateTaskStatusUseCase } from "@/use-cases/cases/task/update-status";
+import { UserRepository } from "../../../repository/prisma";
+import { TaskRepository } from "../../../repository/prisma/prisma-task-repository";
+import { UpdateTaskStatusUseCase } from "../../../use-cases/cases/task/update-status";
 import { PrismaClient } from "@prisma/client";
 
 export function makeUpdateTaskStatus() {

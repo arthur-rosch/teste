@@ -1,6 +1,5 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IUserRepository } from "@/repository";
-import { IEmailToken } from "@/repository/email";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IUserRepository, IEmailToken } from "../../../repository";
 import moment from "moment";
 
 interface validEmailToken {

@@ -1,4 +1,4 @@
-import { makeUpdateStatusPrivacyProjectUseCase } from "@/use-cases/factories/project/update-status-privacy";
+import { makeUpdateStatusPrivacyProjectUseCase } from "../../../use-cases/factories/project/update-status-privacy";
 import { Privacy } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";

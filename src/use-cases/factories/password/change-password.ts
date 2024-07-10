@@ -1,6 +1,6 @@
-import { UserRepository } from "@/repository/prisma";
-import { EmailTokenRepository } from "@/repository/prisma/prisma-emailToken-repository";
-import { ChangePassword } from "@/use-cases/cases/password/change-password";
+import { UserRepository } from "../../../repository/prisma";
+import { EmailTokenRepository } from "../../../repository/prisma/prisma-emailToken-repository";
+import { ChangePassword } from "../../../use-cases/cases/password/change-password";
 import { PrismaClient } from "@prisma/client";
 
 export function makeChangePassword() {

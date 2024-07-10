@@ -1,10 +1,10 @@
-import { ErrorHandler } from '@/http/middleware/errorResponse'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
 import {
   INotificationRepository,
   IProjectRepository,
   IUserRepository,
-} from '@/repository'
-import { SendNotification } from '@/service/sendNotification'
+} from '../../../repository'
+import { SendNotification } from '../../../service/sendNotification'
 
 interface AddUserInProjectUseCaseRequest {
   projectId: string

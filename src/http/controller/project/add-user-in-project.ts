@@ -1,4 +1,4 @@
-import { makeAddUserInProjectUseCase } from "@/use-cases/factories/project/add-user-in-project";
+import { makeAddUserInProjectUseCase } from "../../../use-cases/factories/project/add-user-in-project";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

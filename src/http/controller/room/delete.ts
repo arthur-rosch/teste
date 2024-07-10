@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { AuthReq } from "@/@types/authRequest";
-import { makeDeleteRoomUseCase } from "@/use-cases/factories/room/make-delete-room";
+import { makeDeleteRoomUseCase } from "../../..//use-cases/factories/room/make-delete-room";
 import { z } from "zod";
 
 export const deleteRoomController = async (

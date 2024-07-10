@@ -1,4 +1,4 @@
-import { makeAddVideoRoom } from "@/use-cases/factories/room/make-add-video-room";
+import { makeAddVideoRoom } from "../../../use-cases/factories/room/make-add-video-room";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

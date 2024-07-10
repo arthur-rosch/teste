@@ -1,6 +1,6 @@
 import { Message } from "@prisma/client";
-import { IMessageRepository } from "@/repository";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
+import { IMessageRepository } from "../../../repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
 
 export class GetMessagesByChatId {
   constructor(private messageRepository: IMessageRepository) {}

@@ -1,4 +1,4 @@
-import { makeGetProjectsByUserIdUseCase } from "@/use-cases/factories/project/get-projects-by-user-id";
+import { makeGetProjectsByUserIdUseCase } from "../../../use-cases/factories/project/get-projects-by-user-id";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 

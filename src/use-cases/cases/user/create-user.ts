@@ -1,10 +1,10 @@
 import bcrypt from "bcryptjs";
 import Chance from "chance";
 import { EmailToken, User } from "@prisma/client";
-import { IUserRepository } from "@/repository";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { SendEmailToken } from "@/service/sendEmail";
-import { IEmailToken } from "@/repository/email";
+import { IUserRepository } from "../../../repository";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { SendEmailToken } from "../../../service/sendEmail";
+import { IEmailToken } from "../../../repository/email";
 
 const chance = new Chance();
 interface createUserRequest {

@@ -1,4 +1,4 @@
-import { makeGetAllMessages } from '@/use-cases/factories/message/get-all-messages'
+import { makeGetAllMessages } from '../../../use-cases/factories/message/get-all-messages'
 import { NextFunction, Request, Response } from 'express'
 
 export async function getAllMessages(

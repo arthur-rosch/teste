@@ -1,4 +1,4 @@
-import { makeUpdateTaskStatus } from "@/use-cases/factories/task/update-status";
+import { makeUpdateTaskStatus } from "../../../use-cases/factories/task/update-status";
 import { Status } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";

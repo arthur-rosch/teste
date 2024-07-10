@@ -1,8 +1,8 @@
-import { UserRepository } from "@/repository/prisma";
-import { NotificationRepository } from "@/repository/prisma/prisma-notification-repository";
-import { ProjectRepository } from "@/repository/prisma/prisma-project-repository";
-import { SendNotification } from "@/service/sendNotification";
-import { AddUserInProjectUseCase } from "@/use-cases/cases/project/add-user-in-project";
+import { UserRepository } from "../../../repository/prisma";
+import { NotificationRepository } from "../../../repository/prisma/prisma-notification-repository";
+import { ProjectRepository } from "../../../repository/prisma/prisma-project-repository";
+import { SendNotification } from "../../../service/sendNotification";
+import { AddUserInProjectUseCase } from "../../../use-cases/cases/project/add-user-in-project";
 import { PrismaClient } from "@prisma/client";
 
 export function makeAddUserInProjectUseCase() {

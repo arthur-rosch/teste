@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
-import { IUserRepository } from "@/repository";
-import { IEmailToken } from "@/repository/email";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
+import { IUserRepository, IEmailToken} from "../../../repository";
 
 interface changePasswordRequest {
   email: string;

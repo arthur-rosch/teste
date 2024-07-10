@@ -1,4 +1,4 @@
-import { makeDeleteTask } from "@/use-cases/factories/task/delete";
+import { makeDeleteTask } from "../../../use-cases/factories/task/delete";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 
