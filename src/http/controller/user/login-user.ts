@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { makeLoginUser } from "@/use-cases/factories/user/login-user";
+import { makeLoginUser } from "../../..//use-cases/factories/user/login-user";
 import { z } from "zod";
 
 export async function loginUser(
