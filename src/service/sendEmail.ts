@@ -1,4 +1,4 @@
-import { ErrorHandler } from "@/http/middleware/errorResponse";
+import { ErrorHandler } from "../http/middleware/errorResponse";
 import nodemailer from "nodemailer";
 
 export class SendEmailToken {
