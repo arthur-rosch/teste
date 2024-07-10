@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { IEmailToken, IUserRepository } from '@/repository'
-import { ErrorHandler } from '@/http/middleware/errorResponse'
+import { ErrorHandler } from '../../../http/middleware/errorResponse'
 import { User } from '@prisma/client'
 
 interface LoginUserRequest {
