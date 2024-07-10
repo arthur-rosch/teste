@@ -16,31 +16,33 @@ const httpServer = createServer(app)
 export const io = new Server(httpServer)
 chatSocket(io)
 
-const start = async () => {
-  app.use(express.json())
-  app.use(router)
-  app.use(
-    (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
-      handleError(err, req, res, next)
-    },
-  )
-  app.use(express.urlencoded({ extended: true }))
-  app.set('trust proxy', true)
-  app.disable('etag')
+app.use(express.json())
+app.use(router)
+app.use(
+  (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
+    handleError(err, req, res, next)
+  },
+)
+app.use(express.urlencoded({ extended: true }))
+app.set('trust proxy', true)
+app.disable('etag')
 
-  axios.interceptors.request.use((request) => {
-    request.maxContentLength = Infinity
-    request.maxBodyLength = Infinity
-    return request
-  })
+axios.interceptors.request.use((request) => {
+  request.maxContentLength = Infinity
+  request.maxBodyLength = Infinity
+  return request
+})
 
-  try {
+const startServer = () => {
+  return new Promise((resolve, reject) => {
     httpServer.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`)
+      console.log(`Servidor rodando em http://localhost:${port}`)
+      resolve(httpServer)
+    }).on('error', (error: any) => {
+      console.log(`Ocorreu um erro: ${error.message}`)
+      reject(error)
     })
-  } catch (error: any) {
-    console.log(`Error occurred: ${error.message}`)
-  }
+  })
 }
 
-start()
+export default startServer
