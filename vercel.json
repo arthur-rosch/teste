@@ -11,5 +11,9 @@
             "src": "(.*)",
             "dest": "src/index.ts"
         }
-    ]
+    ],
+    "rewrites": [
+    { "source": "/src/:path*", "destination": "/:path*"},
+    { "source": "/src", "destination": "/" }
+  ]
 }
