@@ -4,13 +4,15 @@
     "paths": {
       "@/*": ["*"]
     },
-    "outDir": "./dist",
-    "module": "commonjs",
-    "target": "es6",
+    "outDir": "./build",
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": ["es2020"],
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "target": "es2022",
   },
   "include": ["src/**/*"]
 }
