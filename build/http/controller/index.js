@@ -50,9 +50,9 @@ var __async = (__this, __arguments, generator) => {
 // src/http/controller/index.ts
 var controller_exports = {};
 __export(controller_exports, {
-  ChangePassword: () => ChangePassword,
+  ChangePassword: () => ChangePassword2,
   SendEmailToken: () => SendEmailToken2,
-  ValidEmailToken: () => ValidEmailToken,
+  ValidEmailToken: () => ValidEmailToken2,
   addUserInProject: () => addUserInProject,
   addUserToRoomController: () => addUserToRoomController,
   addVideoRoom: () => addVideoRoom,
@@ -192,26 +192,6 @@ var ErrorHandler = class extends Error {
     this.statusCode = statusCode;
     this.message = message;
   }
-};
-var handleError = (err, req, res, next) => {
-  if (err instanceof import_zod.ZodError) {
-    res.status(400).json({
-      status: "error",
-      statusCode: 400,
-      message: "Validation error",
-      errors: err.errors.map((e) => ({
-        path: e.path,
-        message: e.message
-      }))
-    });
-    return;
-  }
-  const { statusCode, message } = err;
-  res.status(statusCode || 500).json({
-    status: "error",
-    statusCode,
-    message
-  });
 };
 
 // src/use-cases/cases/user/edit-user.ts
@@ -885,126 +865,10 @@ var ChatRepository = class {
   }
 };
 
-// src/index.ts
-var import_cors = __toESM(require("cors"));
-var import_axios = __toESM(require("axios"));
-var import_http = require("http");
-
-// src/routes/route.ts
-var import_express = require("express");
-
-// src/http/middleware/authenticateUser.ts
-var import_jsonwebtoken2 = require("jsonwebtoken");
-function authenticateUser(req, res, next) {
-  const authToken = req.headers.authorization;
-  if (!authToken) {
-    return res.status(403).json({ msg: "Token is missing" });
-  }
-  const [, token] = authToken.split(" ");
-  if (!token) {
-    return res.status(403).json({ msg: "Token format is invalid" });
-  }
-  const secretKey = process.env.JWT_SECRET;
-  if (!secretKey) {
-    return res.status(500).json({ msg: "Key is not defined" });
-  }
-  try {
-    (0, import_jsonwebtoken2.verify)(token, secretKey);
-    return next();
-  } catch (error) {
-    return res.status(401).json({ msg: "Token is invalid" });
-  }
-}
-
-// src/routes/route.ts
-var router = (0, import_express.Router)();
-router.post("/createUser", createUser);
-router.post("/loginUser", loginUser);
-router.patch("/editUser", authenticateUser, editUser);
-router.delete("/deleteUser", authenticateUser, deleteUser);
-router.get("/users", authenticateUser, getUsers);
-router.post("/validEmail", ValidEmailToken);
-router.post("/sendEmailToken", SendEmailToken2);
-router.patch("/changePassword", ChangePassword);
-router.post("/sendMessage", authenticateUser, sendMessage);
-router.get("/allMessages", authenticateUser, getAllMessages);
-router.get("/messagesByChatId/:chatId", authenticateUser, getMessagesByChatId);
-router.get("/messagesByUserId/:userId", authenticateUser, getMessagesByUserId);
-router.post("/createTask", authenticateUser, createTask);
-router.delete("/deleteTask", authenticateUser, deleteTask);
-router.patch("/updateTaskStatus", authenticateUser, updateTaskStatus);
-router.patch("/addUserProject", authenticateUser, addUserInProject);
-router.post("/createProject", authenticateUser, createProject);
-router.delete("/deleteProject", authenticateUser, deleteProject);
-router.get("/projectsByUserId", authenticateUser, getProjectsByUserId);
-router.delete("/removeUserInProject", authenticateUser, removeUserInProject);
-router.patch("/updateStatusPrivacy", authenticateUser, updateStatusPrivacy);
-router.post("/addUserToRoom", authenticateUser, addUserToRoomController);
-router.post("/addVideoRoom", authenticateUser, addVideoRoom);
-router.post("/createRoom", authenticateUser, createRoomController);
-router.delete("/deleteRoom/:roomId", authenticateUser, deleteRoomController);
-router.get("/getRoomById/:roomId", authenticateUser, getRoomByIdController);
-router.delete("/deleteUserToRoom", authenticateUser, removeUserToRoomController);
-router.patch("/updateRoom", authenticateUser, updateRoomController);
-router.post("/createAnnotation", authenticateUser, createAnnotation);
-router.delete("/deleteAnnotation", authenticateUser, deleteAnnotation);
-router.get(
-  "/getAnnotationById/:annotationId",
-  authenticateUser,
-  getByIdAnnotation
-);
-router.get("/getAnnotationByUserId/:userId", authenticateUser, getByUserId);
-
-// src/index.ts
-var import_socket = require("socket.io");
-
-// src/websocket/chatSocket.ts
-function chatSocket(io2) {
-  io2.on("connection", (socket) => {
-    socket.on("disconnect", () => {
-    });
-  });
-}
-
-// src/index.ts
-var import_express2 = __toESM(require("express"));
-var app = (0, import_express2.default)();
-app.use((0, import_cors.default)());
-var port = 3003;
-var httpServer = (0, import_http.createServer)(app);
-var io = new import_socket.Server(httpServer);
-chatSocket(io);
-var start = () => __async(void 0, null, function* () {
-  app.use(import_express2.default.json());
-  app.use(router);
-  app.use(
-    (err, req, res, next) => {
-      handleError(err, req, res, next);
-    }
-  );
-  app.use(import_express2.default.urlencoded({ extended: true }));
-  app.set("trust proxy", true);
-  app.disable("etag");
-  import_axios.default.interceptors.request.use((request) => {
-    request.maxContentLength = Infinity;
-    request.maxBodyLength = Infinity;
-    return request;
-  });
-  try {
-    httpServer.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`);
-    });
-  } catch (error) {
-    console.log(`Error occurred: ${error.message}`);
-  }
-});
-start();
-
 // src/service/sendNotification.ts
 var SendNotification = class {
   send(data) {
     return __async(this, null, function* () {
-      io.emit("notification", data);
     });
   }
 };
@@ -1433,7 +1297,6 @@ var SendMessage = class {
   }
   execute(_0) {
     return __async(this, arguments, function* ({ chatId, content, userId }) {
-      io.emit("sendMessage", content);
       yield this.messageRepository.saveMessage({
         content,
         userId,
@@ -2692,7 +2555,7 @@ function updateTaskStatus(req, res, next) {
 
 // src/use-cases/cases/email/valid-email-token.ts
 var import_moment = __toESM(require("moment"));
-var ValidEmailToken2 = class {
+var ValidEmailToken = class {
   constructor(emailTokenRepository, userRepository) {
     this.emailTokenRepository = emailTokenRepository;
     this.userRepository = userRepository;
@@ -2744,12 +2607,12 @@ function makeValidEmailToken() {
   const prisma2 = new import_client35.PrismaClient();
   const userRepository = new UserRepository(prisma2);
   const emailTokenRepository = new EmailTokenRepository(prisma2);
-  return new ValidEmailToken2(emailTokenRepository, userRepository);
+  return new ValidEmailToken(emailTokenRepository, userRepository);
 }
 
 // src/http/controller/email/valid-email-token.ts
 var import_zod25 = require("zod");
-function ValidEmailToken(req, res, next) {
+function ValidEmailToken2(req, res, next) {
   return __async(this, null, function* () {
     try {
       const bodySchema = import_zod25.z.object({
@@ -2832,7 +2695,7 @@ function SendEmailToken2(req, res, next) {
 
 // src/use-cases/cases/password/change-password.ts
 var import_bcryptjs3 = __toESM(require("bcryptjs"));
-var ChangePassword2 = class {
+var ChangePassword = class {
   constructor(userRepository, emailTokenRepository) {
     this.userRepository = userRepository;
     this.emailTokenRepository = emailTokenRepository;
@@ -2873,12 +2736,12 @@ function makeChangePassword() {
   const prisma2 = new import_client37.PrismaClient();
   const userRepository = new UserRepository(prisma2);
   const emailTokenRepository = new EmailTokenRepository(prisma2);
-  return new ChangePassword2(userRepository, emailTokenRepository);
+  return new ChangePassword(userRepository, emailTokenRepository);
 }
 
 // src/http/controller/password/change-password.ts
 var import_zod27 = require("zod");
-function ChangePassword(req, res, next) {
+function ChangePassword2(req, res, next) {
   return __async(this, null, function* () {
     try {
       const bodySchema = import_zod27.z.object({

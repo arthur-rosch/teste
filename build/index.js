@@ -50,6 +50,7 @@ var __async = (__this, __arguments, generator) => {
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  default: () => src_default,
   io: () => io
 });
 module.exports = __toCommonJS(src_exports);
@@ -887,7 +888,6 @@ var ChatRepository = class {
 var SendNotification = class {
   send(data) {
     return __async(this, null, function* () {
-      io.emit("notification", data);
     });
   }
 };
@@ -1316,7 +1316,6 @@ var SendMessage = class {
   }
   execute(_0) {
     return __async(this, arguments, function* ({ chatId, content, userId }) {
-      io.emit("sendMessage", content);
       yield this.messageRepository.saveMessage({
         content,
         userId,
@@ -2837,31 +2836,33 @@ var port = 3003;
 var httpServer = (0, import_http.createServer)(app);
 var io = new import_socket.Server(httpServer);
 chatSocket(io);
-var start = () => __async(void 0, null, function* () {
-  app.use(import_express2.default.json());
-  app.use(router);
-  app.use(
-    (err, req, res, next) => {
-      handleError(err, req, res, next);
-    }
-  );
-  app.use(import_express2.default.urlencoded({ extended: true }));
-  app.set("trust proxy", true);
-  app.disable("etag");
-  import_axios.default.interceptors.request.use((request) => {
-    request.maxContentLength = Infinity;
-    request.maxBodyLength = Infinity;
-    return request;
-  });
-  try {
-    httpServer.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`);
-    });
-  } catch (error) {
-    console.log(`Error occurred: ${error.message}`);
+app.use(import_express2.default.json());
+app.use(router);
+app.use(
+  (err, req, res, next) => {
+    handleError(err, req, res, next);
   }
+);
+app.use(import_express2.default.urlencoded({ extended: true }));
+app.set("trust proxy", true);
+app.disable("etag");
+import_axios.default.interceptors.request.use((request) => {
+  request.maxContentLength = Infinity;
+  request.maxBodyLength = Infinity;
+  return request;
 });
-start();
+var startServer = () => {
+  return new Promise((resolve, reject) => {
+    httpServer.listen(port, () => {
+      console.log(`Servidor rodando em http://localhost:${port}`);
+      resolve(httpServer);
+    }).on("error", (error) => {
+      console.log(`Ocorreu um erro: ${error.message}`);
+      reject(error);
+    });
+  });
+};
+var src_default = startServer;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   io

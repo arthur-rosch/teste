@@ -1,4 +1,4 @@
-import { io } from '../../../index'
+// import { io } from '../../../index'
 import { IMessageRepository } from '../../../repository'
 
 interface SendMessageReq {
@@ -12,7 +12,7 @@ export class SendMessage {
 
   async execute({ chatId, content, userId }: SendMessageReq): Promise<void> {
 
-    io.emit("sendMessage", content);
+    // io.emit("sendMessage", content);
 
     await this.messageRepository.saveMessage({
       content,

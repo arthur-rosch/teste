@@ -53,7 +53,7 @@ __export(route_exports, {
   router: () => router
 });
 module.exports = __toCommonJS(route_exports);
-var import_express2 = require("express");
+var import_express = require("express");
 
 // src/http/middleware/authenticateUser.ts
 var import_jsonwebtoken = require("jsonwebtoken");
@@ -185,26 +185,6 @@ var ErrorHandler = class extends Error {
     this.statusCode = statusCode;
     this.message = message;
   }
-};
-var handleError = (err, req, res, next) => {
-  if (err instanceof import_zod.ZodError) {
-    res.status(400).json({
-      status: "error",
-      statusCode: 400,
-      message: "Validation error",
-      errors: err.errors.map((e) => ({
-        path: e.path,
-        message: e.message
-      }))
-    });
-    return;
-  }
-  const { statusCode, message } = err;
-  res.status(statusCode || 500).json({
-    status: "error",
-    statusCode,
-    message
-  });
 };
 
 // src/use-cases/cases/user/edit-user.ts
@@ -878,59 +858,10 @@ var ChatRepository = class {
   }
 };
 
-// src/index.ts
-var import_cors = __toESM(require("cors"));
-var import_axios = __toESM(require("axios"));
-var import_http = require("http");
-var import_socket = require("socket.io");
-
-// src/websocket/chatSocket.ts
-function chatSocket(io2) {
-  io2.on("connection", (socket) => {
-    socket.on("disconnect", () => {
-    });
-  });
-}
-
-// src/index.ts
-var import_express = __toESM(require("express"));
-var app = (0, import_express.default)();
-app.use((0, import_cors.default)());
-var port = 3003;
-var httpServer = (0, import_http.createServer)(app);
-var io = new import_socket.Server(httpServer);
-chatSocket(io);
-var start = () => __async(void 0, null, function* () {
-  app.use(import_express.default.json());
-  app.use(router);
-  app.use(
-    (err, req, res, next) => {
-      handleError(err, req, res, next);
-    }
-  );
-  app.use(import_express.default.urlencoded({ extended: true }));
-  app.set("trust proxy", true);
-  app.disable("etag");
-  import_axios.default.interceptors.request.use((request) => {
-    request.maxContentLength = Infinity;
-    request.maxBodyLength = Infinity;
-    return request;
-  });
-  try {
-    httpServer.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`);
-    });
-  } catch (error) {
-    console.log(`Error occurred: ${error.message}`);
-  }
-});
-start();
-
 // src/service/sendNotification.ts
 var SendNotification = class {
   send(data) {
     return __async(this, null, function* () {
-      io.emit("notification", data);
     });
   }
 };
@@ -1359,7 +1290,6 @@ var SendMessage = class {
   }
   execute(_0) {
     return __async(this, arguments, function* ({ chatId, content, userId }) {
-      io.emit("sendMessage", content);
       yield this.messageRepository.saveMessage({
         content,
         userId,
@@ -2823,7 +2753,7 @@ function ChangePassword2(req, res, next) {
 }
 
 // src/routes/route.ts
-var router = (0, import_express2.Router)();
+var router = (0, import_express.Router)();
 router.post("/createUser", createUser);
 router.post("/loginUser", loginUser);
 router.patch("/editUser", authenticateUser, editUser);
