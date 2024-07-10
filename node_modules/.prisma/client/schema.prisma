@@ -1,0 +1,231 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Privacy {
+  Public
+  Private
+}
+
+enum Status {
+  To_Do
+  Analysis
+  Development
+  Testing
+  Completed
+}
+
+enum ClientType {
+  CLIENT
+  SUPPLIER
+  SERVICE_PROVIDER
+}
+
+enum ExpenseType {
+  SUPPLIER
+  SERVICE_PROVIDER
+}
+
+model User {
+  id        String @id @default(uuid())
+  email     String @unique
+  name      String
+  phone     String
+  gender    String
+  dateBirth String
+  password  String
+
+  rooms                 Room[]                  @relation("UserRooms")
+  ownedRooms            Room[]                  @relation("RoomsOwner")
+  projects              Projects[]              @relation("UserProjects")
+  messages              Message[]               @relation("UserMessages")
+  ownedProjects         Projects[]              @relation("ProjectOwner")
+  tasks                 Task[]                  @relation("TaskResponsible")
+  annotation            Annotation[]            @relation("UserAnnotation")
+  emailToken            EmailToken[]            @relation("UserEmailToken")
+  notification          Notification[]          @relation("UserNotifications")
+  sendNotification      Notification[]          @relation("SenderNotifications")
+  videoRoom             VideoRoom[]             @relation("VideoRoomsOwner")
+  financialRegistration FinancialRegistration[] @relation("FinancialRegistrations")
+}
+
+model Annotation {
+  id          String @id @default(uuid())
+  userId      String
+  title       String
+  color       String
+  information String
+
+  user User @relation("UserAnnotation", fields: [userId], references: [id])
+}
+
+model Projects {
+  id       String   @id @default(uuid())
+  name     String
+  color    String
+  ownerId  String
+  usersIds String[]
+  privacy  Privacy  @default(Private)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users User[] @relation("UserProjects")
+  owner User?  @relation("ProjectOwner", fields: [ownerId], references: [id])
+
+  tasks Task[]
+}
+
+model Task {
+  id          String @id @default(uuid())
+  title       String
+  information String
+  files       String
+  status      Status @default(To_Do)
+
+  projectId     String
+  responsibleId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  responsible User?    @relation("TaskResponsible", fields: [responsibleId], references: [id])
+  project     Projects @relation(fields: [projectId], references: [id])
+}
+
+model Room {
+  id      String @id @default(uuid())
+  name    String
+  ownerId String
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  chats     Chat[]
+  users     User[]      @relation("UserRooms")
+  owner     User?       @relation("RoomsOwner", fields: [ownerId], references: [id])
+  VideoRoom VideoRoom[]
+}
+
+model VideoRoom {
+  id       String @id @default(uuid())
+  ownerId  String
+  roomId   String
+  roomLink String
+
+  room  Room @relation(fields: [roomId], references: [id])
+  owner User @relation("VideoRoomsOwner", fields: [ownerId], references: [id])
+}
+
+model Chat {
+  id     String @id @default(uuid())
+  roomId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages Message[]
+  room     Room      @relation(fields: [roomId], references: [id])
+}
+
+model Message {
+  id      String @id @default(uuid())
+  content String
+  userId  String
+  chatId  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation("UserMessages", fields: [userId], references: [id])
+  chat Chat @relation(fields: [chatId], references: [id])
+}
+
+model EmailToken {
+  id        String  @id @default(uuid())
+  email     String  @unique
+  token     String
+  validated Boolean @default(false)
+  attempts  Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation("UserEmailToken", fields: [email], references: [email])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  senderId  String
+  user      User     @relation("UserNotifications", fields: [userId], references: [id])
+  sender    User     @relation("SenderNotifications", fields: [senderId], references: [id])
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FinancialRegistration {
+  id       String    @id @default(uuid())
+  userId   String
+  clients  Client[]
+  expenses Expense[]
+
+  user         User           @relation("FinancialRegistrations", fields: [userId], references: [id])
+  Receivable   Receivable[]
+  ExtraExpense ExtraExpense[]
+}
+
+model Client {
+  id                      String                @id @default(uuid())
+  name                    String
+  type                    ClientType
+  address                 String
+  phone                   String
+  email                   String
+  financialRegistrationId String
+  financialRegistration   FinancialRegistration @relation(fields: [financialRegistrationId], references: [id])
+  Receivable              Receivable[]
+}
+
+model Expense {
+  id                      String                @id @default(uuid())
+  type                    ExpenseType
+  amount                  Float
+  recurringMonth          Int
+  contractStartDate       DateTime
+  contractEndDate         DateTime?
+  financialRegistrationId String
+  financialRegistration   FinancialRegistration @relation(fields: [financialRegistrationId], references: [id])
+}
+
+model Receivable {
+  id                      String                @id @default(uuid())
+  clientId                String
+  client                  Client                @relation(fields: [clientId], references: [id])
+  serviceProvided         String
+  amountToReceive         Float
+  serviceStartDate        DateTime
+  serviceEndDate          DateTime
+  financialRegistrationId String
+  financialRegistration   FinancialRegistration @relation(fields: [financialRegistrationId], references: [id])
+}
+
+model ExtraExpense {
+  id                      String                @id @default(uuid())
+  expenseType             String
+  amount                  Float
+  startDate               DateTime
+  endDate                 DateTime
+  financialRegistrationId String
+  financialRegistration   FinancialRegistration @relation(fields: [financialRegistrationId], references: [id])
+}
