@@ -1,5 +1,5 @@
 import { IUserRepository } from "@/repository";
-import { ErrorHandler } from "@/http/middleware/errorResponse";
+import { ErrorHandler } from "../../../http/middleware/errorResponse";
 
 interface editUserRequest {
   name?: string;
