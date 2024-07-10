@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { makeEditUser } from "@/use-cases/factories/user/edit-user";
+import { makeEditUser } from "../../../use-cases/factories/user/edit-user";
 import { z } from "zod";
 
 export async function editUser(
